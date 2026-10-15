@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.autoservice.R
-import com.example.autoservice.data.Request
+import com.example.autoservice.data.ClosedRequestWithTotal
 import com.example.autoservice.ui.components.AppCard
 import com.example.autoservice.util.DateUtils
 import com.example.autoservice.util.MoneyUtils
@@ -37,7 +37,9 @@ fun HistoryScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(stringResource(R.string.history_title)) })
+            TopAppBar(
+                title = { Text(stringResource(R.string.history_title)) }
+            )
         }
     ) { innerPadding ->
         Column(
@@ -66,20 +68,26 @@ fun HistoryScreen(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 var previousMonth: String? = null
+
                 state.requests.forEach { request ->
                     val closedAt = request.closedAt ?: request.createdAt
                     val month = DateUtils.monthName(closedAt)
+
                     if (month != previousMonth) {
                         item(key = "month-$month") {
                             Text(
                                 text = month,
-                                modifier = Modifier.padding(top = 12.dp, bottom = 2.dp),
+                                modifier = Modifier.padding(
+                                    top = 12.dp,
+                                    bottom = 2.dp
+                                ),
                                 style = MaterialTheme.typography.titleMedium,
                                 color = MaterialTheme.colorScheme.primary
                             )
                         }
                         previousMonth = month
                     }
+
                     item(key = "request-${request.id}") {
                         HistoryRequestCard(
                             request = request,
@@ -94,10 +102,14 @@ fun HistoryScreen(
 
 @Composable
 private fun HistoryRequestCard(
-    request: Request,
+    request: ClosedRequestWithTotal,
     onClick: () -> Unit
 ) {
-    AppCard(modifier = Modifier.clickable(onClick = onClick)) {
+    val closedAt = request.closedAt ?: request.createdAt
+
+    AppCard(
+        modifier = Modifier.clickable(onClick = onClick)
+    ) {
         Column(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(5.dp)
@@ -108,18 +120,21 @@ private fun HistoryRequestCard(
                 fontWeight = FontWeight.Bold
             )
             Text(request.brandModel)
-            Text(request.ownerName, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(
+                text = request.ownerName,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
             Text(
                 text = stringResource(
                     R.string.closed_date,
-                    DateUtils.formatDate(request.closedAt ?: request.createdAt)
+                    DateUtils.formatDate(closedAt)
                 ),
                 style = MaterialTheme.typography.bodySmall
             )
             Text(
                 text = stringResource(
                     R.string.total_with_amount,
-                    MoneyUtils.format(0)
+                    MoneyUtils.format(request.totalPrice)
                 ),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.primary

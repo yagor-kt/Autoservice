@@ -26,6 +26,27 @@ interface RequestDao {
     @Query("SELECT * FROM requests WHERE status = 'CLOSED' ORDER BY closedAt DESC")
     fun getClosed(): Flow<List<Request>>
 
+    @Query(
+        """
+        SELECT
+            r.id AS id,
+            r.autoId AS autoId,
+            r.plateNumber AS plateNumber,
+            r.brandModel AS brandModel,
+            r.ownerName AS ownerName,
+            r.status AS status,
+            r.createdAt AS createdAt,
+            r.closedAt AS closedAt,
+            COALESCE(SUM(ri.price), 0) AS totalPrice
+        FROM requests AS r
+        LEFT JOIN request_items AS ri ON ri.requestId = r.id
+        WHERE r.status = 'CLOSED'
+        GROUP BY r.id
+        ORDER BY r.closedAt DESC
+        """
+    )
+    fun getClosedWithTotals(): Flow<List<ClosedRequestWithTotal>>
+
     @Query("SELECT * FROM requests WHERE autoId = :autoId ORDER BY createdAt DESC")
     fun getByAutoId(autoId: Long): Flow<List<Request>>
 

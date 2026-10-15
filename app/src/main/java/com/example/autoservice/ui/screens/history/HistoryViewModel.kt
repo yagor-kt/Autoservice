@@ -3,7 +3,7 @@ package com.example.autoservice.ui.screens.history
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.autoservice.data.Request
+import com.example.autoservice.data.ClosedRequestWithTotal
 import com.example.autoservice.data.RequestRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 
 data class HistoryUiState(
-    val requests: List<Request> = emptyList(),
+    val requests: List<ClosedRequestWithTotal> = emptyList(),
     val query: String = ""
 )
 
@@ -20,7 +20,10 @@ class HistoryViewModel(
 ) : ViewModel() {
     private val query = MutableStateFlow("")
 
-    val uiState = combine(requestRepository.getClosed(), query) { requests, search ->
+    val uiState = combine(
+        requestRepository.getClosedWithTotals(),
+        query
+    ) { requests, search ->
         val filtered = if (search.isBlank()) {
             requests
         } else {
@@ -28,11 +31,15 @@ class HistoryViewModel(
                 it.plateNumber.contains(search.trim(), ignoreCase = true)
             }
         }
-        HistoryUiState(requests = filtered, query = search)
+
+        HistoryUiState(
+            requests = filtered,
+            query = search
+        )
     }.stateIn(
-        viewModelScope,
-        SharingStarted.WhileSubscribed(5_000),
-        HistoryUiState()
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = HistoryUiState()
     )
 
     fun updateQuery(value: String) {

@@ -13,6 +13,9 @@ class RequestRepository(
 
     fun getClosed(): Flow<List<Request>> = dao.getClosed()
 
+    fun getClosedWithTotals(): Flow<List<ClosedRequestWithTotal>> =
+        dao.getClosedWithTotals()
+
     fun getByAutoId(autoId: Long): Flow<List<Request>> = dao.getByAutoId(autoId)
 
     fun countByStatus(status: String): Flow<Int> = dao.countByStatus(status)
@@ -23,11 +26,15 @@ class RequestRepository(
     fun revenueClosedBetween(start: Long, end: Long): Flow<Int> =
         dao.revenueClosedBetween(start, end)
 
-    fun topClosedBrands(): Flow<List<CountByBrand>> = dao.topClosedBrands()
+    fun topClosedBrands(): Flow<List<CountByBrand>> =
+        dao.topClosedBrands()
 
-    suspend fun insert(request: Request): Long = dao.insert(request)
+    suspend fun insert(request: Request): Long =
+        dao.insert(request)
 
-    suspend fun update(request: Request) = dao.update(request)
+    suspend fun update(request: Request) =
+        dao.update(request)
 
-    suspend fun delete(request: Request) = dao.delete(request)
+    suspend fun delete(request: Request) =
+        dao.delete(request)
 }
