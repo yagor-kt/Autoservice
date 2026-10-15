@@ -1,0 +1,19 @@
+package com.example.autoservice.data
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface ReminderDao {
+    @Query("SELECT * FROM reminders ORDER BY dueDate ASC")
+    fun getAll(): Flow<List<Reminder>>
+
+    @Insert
+    suspend fun insert(reminder: Reminder): Long
+
+    @Delete
+    suspend fun delete(reminder: Reminder)
+}
