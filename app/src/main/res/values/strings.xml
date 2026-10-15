@@ -26,8 +26,10 @@
     <string name="owner_name">Имя владельца</string>
     <string name="owner_phone">Телефон владельца</string>
     <string name="create">Создать</string>
+    <string name="fill_required_fields">Заполните обязательные поля и укажите пробег</string>
 
     <string name="request_details_title">Заявка</string>
+    <string name="request_not_found">Заявка не найдена</string>
     <string name="vehicle_section">Автомобиль</string>
     <string name="owner_section">Владелец</string>
     <string name="next_stage">Следующий этап</string>
@@ -35,6 +37,8 @@
     <string name="parts_title">Запчасти</string>
     <string name="add_work">Добавить работу</string>
     <string name="add_part">Добавить запчасть</string>
+    <string name="add_item">Добавить</string>
+    <string name="no_items">Позиции ещё не добавлены</string>
     <string name="total_title">Итого по заявке</string>
     <string name="close_request">Закрыть заявку</string>
     <string name="close_request_confirmation">Закрыть заявку?</string>
@@ -45,6 +49,8 @@
     <string name="ok">ОК</string>
     <string name="work_cost">Стоимость</string>
     <string name="select_item">Выберите позицию</string>
+    <string name="created_label">Создана</string>
+    <string name="kilometers_short">км</string>
 
     <string name="history_title">История ремонтов</string>
     <string name="search_by_plate">Поиск по госномеру</string>
