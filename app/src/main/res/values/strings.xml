@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Автосервис</string>
+
+    <string name="login_title">Автосервис</string>
+    <string name="login_label">Логин</string>
+    <string name="password_label">Пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="login_error">Неверный логин или пароль</string>
+
+    <string name="requests_title">Заявки</string>
+    <string name="summary_in_progress">В работе</string>
+    <string name="summary_ready">Готовы</string>
+    <string name="summary_closed_today">Закрыто сегодня</string>
+    <string name="filter_all">Все</string>
+    <string name="status_accepted">Принята</string>
+    <string name="status_diagnostics">Диагностика</string>
+    <string name="status_approval">Согласование</string>
+    <string name="status_repair">Ремонт</string>
+    <string name="status_ready">Готова</string>
+    <string name="status_closed">Закрыта</string>
+    <string name="add_request">Добавить заявку</string>
+    <string name="plate_number">Госномер</string>
+    <string name="brand_model">Марка и модель</string>
+    <string name="vin">VIN</string>
+    <string name="mileage">Пробег</string>
+    <string name="owner_name">Имя владельца</string>
+    <string name="owner_phone">Телефон владельца</string>
+    <string name="create">Создать</string>
+
+    <string name="request_details_title">Заявка</string>
+    <string name="vehicle_section">Автомобиль</string>
+    <string name="owner_section">Владелец</string>
+    <string name="next_stage">Следующий этап</string>
+    <string name="works_title">Работы</string>
+    <string name="parts_title">Запчасти</string>
+    <string name="add_work">Добавить работу</string>
+    <string name="add_part">Добавить запчасть</string>
+    <string name="total_title">Итого по заявке</string>
+    <string name="close_request">Закрыть заявку</string>
+    <string name="close_request_confirmation">Закрыть заявку?</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="print_receipt">Печать чека</string>
+    <string name="payment_accepted">Оплата принята</string>
+    <string name="ok">ОК</string>
+    <string name="work_cost">Стоимость</string>
+    <string name="select_item">Выберите позицию</string>
+
+    <string name="history_title">История ремонтов</string>
+    <string name="search_by_plate">Поиск по госномеру</string>
+
+    <string name="reminders_title">Напоминания о ТО</string>
+    <string name="next_maintenance">Следующее ТО: %1$s</string>
+    <string name="days_remaining">Осталось: %1$d дней</string>
+    <string name="reminder_planned">В плане</string>
+    <string name="reminder_soon">Скоро</string>
+    <string name="reminder_urgent">Просрочено/Срочно</string>
+    <string name="add_reminder">Добавить напоминание</string>
+    <string name="maintenance_date">Дата ТО</string>
+    <string name="save">Сохранить</string>
+    <string name="delete_reminder_title">Удалить напоминание?</string>
+    <string name="delete">Удалить</string>
+    <string name="no_reminders">Напоминаний нет</string>
+    <string name="date_format_hint">дд.мм.гггг</string>
+    <string name="invalid_date">Введите дату в формате дд.мм.гггг</string>
+
+    <string name="analytics_title">Аналитика</string>
+    <string name="requests_this_month">Заявок за месяц</string>
+    <string name="revenue_this_month">Выручка за месяц</string>
+    <string name="revenue_this_week">Выручка за неделю</string>
+    <string name="average_check">Средний чек</string>
+    <string name="top_works">Топ-3 работы</string>
+    <string name="most_frequent_brands">Самые частые марки</string>
+    <string name="times_count">%1$d раз</string>
+    <string name="requests_count">%1$d заявок</string>
+
+    <string name="navigation_requests">Заявки</string>
+    <string name="navigation_history">История</string>
+    <string name="navigation_reminders">ТО</string>
+    <string name="navigation_analytics">Аналитика</string>
+
+    <string name="unknown_value">Не указано</string>
+    <string name="currency_rubles">%1$s ₽</string>
+</resources>
