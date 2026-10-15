@@ -43,6 +43,7 @@ fun LoginScreen(navController: NavController) {
     var password by remember { mutableStateOf("") }
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+    val loginError = stringResource(R.string.login_error)
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
@@ -86,7 +87,6 @@ fun LoginScreen(navController: NavController) {
             )
             Spacer(Modifier.height(20.dp))
 
-            val loginError = stringResource(R.string.login_error)
             Button(
                 onClick = {
                     if (login == VALID_LOGIN && password == VALID_PASSWORD) {
@@ -95,9 +95,7 @@ fun LoginScreen(navController: NavController) {
                         }
                     } else {
                         coroutineScope.launch {
-                            snackbarHostState.showSnackbar(
-                                loginError
-                            )
+                            snackbarHostState.showSnackbar(loginError)
                         }
                     }
                 },
@@ -108,6 +106,3 @@ fun LoginScreen(navController: NavController) {
         }
     }
 }
-
-@Composable
-private fun contextString(resourceId: Int): String = stringResource(resourceId)
